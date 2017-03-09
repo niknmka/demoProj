@@ -75,13 +75,16 @@
  */
 //var x = 0;
 //var y;
-    module.exports = function (someArg, someFunc) {
+    module.exports = function (someArg, callSomeFunc, value) { // Probably the value variable should be passed here also
 
-        someFunc = func(value);
-        arguments[0] = someArg+1;
-        arguments[1] = someFunc;
-
-        return [someArg,someFunc];
+        // There is no any func to call, there is no any value to call
+        // Probably someFunc have to be passed here as an argument and 
+        // called instead: var callResult = someFunc(value)
+        someArg = someArg + 1;
+        var callSomeFunc = func(value);
+        var array = [someArg, callSomeFunc, value]
+        // Some func has not be the value, it looks like it's callback that should return value.
+        return array;
     }
 
 
@@ -161,9 +164,22 @@ span2 = document.getElementById('span2');
 
 window.doAction = function () {
 
-    clickNumber += clickCounter.arguments[0];
+    // You shouldn't change values here - more over it doesn't make any sense
+    // clickCounter is a function without properties
+    //clickNumber += clickCounter.arguments[0];
     //count = clickCounter.arguments[1];
-    clickCounter(clickNumber % 2 == 0 ? count1(count) : count2(count));
+    // It still doesn't make sense because you pass the countX result not the callback itself
+    // Call should look like clickCounter(clickNumber, clickNumber % 2 === 0 ? count1 : count2, count)
+    // We pass the clickNumber as a value that has to be incremented, we pass the function as a function,
+    // and the value we are working with
+    clickCounter(clickNumber, clickNumber % 2 == 0 ? count1 : count2, count);
+    // Click counter returns new value as count and clickNumber as an array. You should write it into some variable
+    // var results = ...
+    // Then the values should be got out of it: e.g. count = result[1]
+    var results = clickCounter();
+    clickNumber = results[0];
+    var countX = results[1];
+    count = results[2];
     console.log(count, clickNumber);
     span.innerHTML = count;
     span2.innerHTML = clickNumber;
