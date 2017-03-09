@@ -9,8 +9,8 @@
         // Probably someFunc have to be passed here as an argument and 
         // called instead: var callResult = someFunc(value)
         someArg = someArg + 1;
-        var callSomeFunc = func(value);
-        var array = [someArg, callSomeFunc, value]
+        var callResult = callSomeFunc(value);
+        var array = [someArg, callResult]
         // Some func has not be the value, it looks like it's callback that should return value.
         return array;
     }
