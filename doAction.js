@@ -44,15 +44,13 @@ window.doAction = function () {
     // Call should look like clickCounter(clickNumber, clickNumber % 2 === 0 ? count1 : count2, count)
     // We pass the clickNumber as a value that has to be incremented, we pass the function as a function,
     // and the value we are working with
-    clickCounter(clickNumber, clickNumber % 2 == 0 ? count1 : count2, count);
+    var results = clickCounter(clickNumber, clickNumber % 2 == 0 ? count1 : count2, count);
     // Click counter returns new value as count and clickNumber as an array. You should write it into some variable
     // var results = ...
     // Then the values should be got out of it: e.g. count = result[1]
-    var results = clickCounter();
-    var clickNumberResult = results[0];
-    var countResult = results[1];
-    clickNumber = clickNumber + clickNumberResult;
-    count = count + countResult;
+
+    clickNumber= results[0];
+    count = results[1];
     console.log(clickNumber, count);
     span.innerHTML = count;
     span2.innerHTML = clickNumber;
