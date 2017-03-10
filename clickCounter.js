@@ -10,7 +10,7 @@
         // called instead: var callResult = someFunc(value)
         someArg = someArg + 1;
         var callResult = callSomeFunc(value);
-        var array = [someArg, callResult]
+        var array = [someArg, callResult];
         // Some func has not be the value, it looks like it's callback that should return value.
         return array;
     }

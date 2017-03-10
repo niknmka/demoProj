@@ -49,10 +49,11 @@ window.doAction = function () {
     // var results = ...
     // Then the values should be got out of it: e.g. count = result[1]
     var results = clickCounter();
-    clickNumber = results[0];
-    var countX = results[1];
-    count = results[2];
-    console.log(count, clickNumber);
+    var clickNumberResult = results[0];
+    var countResult = results[1];
+    clickNumber = clickNumber + clickNumberResult;
+    count = count + countResult;
+    console.log(clickNumber, count);
     span.innerHTML = count;
     span2.innerHTML = clickNumber;
 
